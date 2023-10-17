@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 import uvicorn
 from config import settings
+from src.auth.utils import PROTECTED
 from src.user.router import router as router_user
+from src.auth.router import router as router_auth
 
 app = FastAPI(
     title="FastAPI Demo App",
@@ -11,7 +13,8 @@ app = FastAPI(
     redoc_url="/api/doc",
 )
 
-app.include_router(router_user)
+app.include_router(router_user, dependencies=PROTECTED)
+app.include_router(router_auth)
 
 
 @app.get("/")
