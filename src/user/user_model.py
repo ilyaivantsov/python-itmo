@@ -1,21 +1,20 @@
-from typing import Optional
+from typing import Optional, Annotated
 
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, AfterValidator
+
+from src.user.validators import validate_password, validate_email_by_regex
+
+Password = Annotated[str, AfterValidator(validate_password)]
+Email = Annotated[str, AfterValidator(validate_email_by_regex)]
 
 
 class UserModel(BaseModel):
     username: str
-    email: Optional[str]
+    email: Optional[Email] = None
     first_name: str
     last_name: str
-    password: str
+    password: Password
 
-    # Validate password
-    @validator('password')
-    def validate_password(cls, password: str):
-        if len(password) < 8:
-            raise ValueError('Password must be at least 8 characters')
-        return password
 
 class UserUpdateDto(UserModel):
     username: Optional[str]
