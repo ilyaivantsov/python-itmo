@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Giphy by voice</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .prompter {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 20%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 2em;
+            text-align: center;
+            padding-top: 1em;
+        }
+
+        #running-line {
+            position: relative;
+            margin: auto;
+            padding: 0 1em;
+            width: fit-content;
+        }
+
+        .final {
+            background-color: rgba(255, 255, 255, 0.5);
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<div class="frame">
+    <div id="cad-1">
+        <img class="cad" id="cad-1-src" src="https://media.giphy.com/media/l41Yfcar0BR9ZNHTq/giphy.gif">
+    </div>
+    <div id="cad-2" class="hide">
+        <img class="cad" id="cad-2-src" src="https://media.giphy.com/media/3oEjHCCOoYdjv8M6iI/giphy.gif">
+    </div>
+</div>
+<div class="prompter">
+    <h2 id="running-line">
+        ...
+    </h2>
+</div>
+<script src="main.js"></script>
+</body>
+</html>

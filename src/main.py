@@ -1,6 +1,7 @@
 import os
 import uvicorn
 from fastapi import FastAPI, HTTPException
+from fastapi.staticfiles import StaticFiles
 from src.giphy_api import GiphyClient
 from dotenv import load_dotenv
 
@@ -28,6 +29,7 @@ async def search_gifs(query: str, limit: int = 10, lang: str = 'en') -> list[str
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+app.mount('/', StaticFiles(directory='static', html=True), name='static')
 
 if __name__ == "__main__":
     uvicorn.run(app, host=HOST, port=PORT)
